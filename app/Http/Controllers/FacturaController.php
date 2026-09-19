@@ -162,7 +162,8 @@ class FacturaController extends Controller
 
         $pdf = Pdf::loadView('facturas.pdf', compact('factura', 'qrBase64'))
                   ->setPaper('a4', 'portrait');
-        return $pdf->download("Comprobante-{$factura->numero_sunat ?? $factura->numero}.pdf");
+        $numeroComprobante = $factura->numero_sunat ?? $factura->numero;
+        return $pdf->download("Comprobante-{$numeroComprobante}.pdf");
     }
 
     // ════════════════════════════════════════════════════════════════════
